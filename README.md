@@ -1,4 +1,4 @@
-# Hey, I'm Eugene 👋
+# Hey, I'm Eugene 👋🏾
 
 ```go
 package main
