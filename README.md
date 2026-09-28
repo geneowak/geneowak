@@ -3,27 +3,53 @@
 ```go
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Engineer struct {
-    Name        string
-    Role        string
-    Experience  string
-    Location    string
-    Certified   []string
+	Name       string
+	Role       string
+	Experience string
+	Location   string
+	Timezone   string
+	Certified  []string
+	Learning   []string
+	OpenToWork bool
+}
+
+// Ship delivers a project. Double-booking not included.
+func (e Engineer) Ship(project string) {
+	fmt.Printf("🚀 %s shipped %s\n", e.Name, project)
+}
+
+// Contact tells recruiters what to do next.
+func (e Engineer) Contact() string {
+	if !e.OpenToWork {
+		return "Heads down, shipping. Check back soon."
+	}
+	return "Hiring for a remote Go role? Send me a LinkedIn DM."
 }
 
 func main() {
-    me := Engineer{
-        Name:       "Eugene Owak",
-        Role:       "Backend engineer (Go)",
-        Experience: "7+ years remote full-stack, Laravel-shaped",
-        Location:   "Remote, always",
-        Certified:  []string{"AWS Certified Developer – Associate"},
-    }
+	me := Engineer{
+		Name:       "Eugene Owak",
+		Role:       "Backend engineer (Go)",
+		Experience: "7+ years remote full-stack, Laravel-shaped",
+		Location:   "Remote, always",
+		Timezone:   "UTC+3",
+		Certified:  []string{"AWS Certified Developer – Associate"},
+		Learning:   []string{"Go", "systems engineering"},
+		OpenToWork: true,
+	}
 
-    // Payment processing apps, Shopify POS apps, and
-    // building and managing a DevOps platform.
-    // Now: Go, PostgreSQL, and systems engineering.
-    me.Ship()
+	// Payment processing apps, Shopify POS apps, and
+	// building and managing a DevOps platform.
+	me.Ship("Cinehold")
+
+	fmt.Println("Currently learning:", strings.Join(me.Learning, ", "))
+	fmt.Println(me.Contact())
 }
 ```
 
@@ -46,4 +72,4 @@ BSc Software Engineering, Makerere University
 
 ## 📬 Open to work
 
-Hiring for a **remote Go backend role**? `git checkout` my repos, then let's talk.
+Hiring for a **remote Go backend role**? `git checkout` my repos, then [send me a DM on LinkedIn](https://www.linkedin.com/in/eugene-owak/).
